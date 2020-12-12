@@ -1,8 +1,10 @@
-PROJECT=wave27-sellbytel-fejuan
-BUCKET=fejuan-cases
-REGION=us-central1
+# Adapt the below parameters according to your needs
 
-python main.py \
+PROJECT=<PROJECT_ID>
+BUCKET=<BUCKET_ID>
+REGION=<REGION>
+
+python count-words.py \
   --region $REGION \
   --input gs://dataflow-samples/shakespeare/kinglear.txt \
   --output gs://$BUCKET/results/outputs \

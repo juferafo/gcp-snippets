@@ -1,3 +1,14 @@
+"""
+This script is designed to schedule periodic runs of the dataflow pipeline "py_file" in Airflow
+For this purpose one can use as an example ./dataflow-count-words.py
+
+TO BE DONE BY THE DEVELOPER:
+
+1 - Set the Variables "bucket_path", "project_id", "gce_zone" and "gce_region" in Airflow
+2 - Adapt the variable "py_file" to the path of your Apache Beam code
+"""
+
+
 import datetime
 
 from airflow import models
@@ -22,7 +33,7 @@ default_args = {
         # This is a subfolder for storing temporary files, like the staged pipeline job.
         "temp_location": bucket_path + "/tmp/",
         "input": "gs://dataflow-samples/shakespeare/kinglear.txt",
-        "output": "gs://fejuan-cases/results/outputs",
+        "output": bucket_path + "/results/outputs",
     },
 }
 
@@ -38,8 +49,8 @@ with models.DAG(
 ) as dag:
 
     start_template_job = DataFlowPythonOperator(
-        task_id='my_task',
-        py_file='gs://fejuan-cases/main.py',
+        task_id='dataflow_task',
+        py_file=bucket_path + '/main.py',
         gcp_conn_id='google_cloud_default',
         dag=dag
     )
