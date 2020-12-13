@@ -1,1 +1,3 @@
 # gcp-snippets
+
+This reporisoty contains python and bash scripts to execute tasks with Big Data related products of the Google Cloud Platform like: BigQuery, Dataflow, Composer, etc...
